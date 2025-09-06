@@ -106,7 +106,7 @@ const Skills = () => {
             viewport={{ once: true }}
           >
             My{" "}
-            <span className="text-violet-800 bg-gradient-to-r from-violet-700 to-purple-900 bg-clip-text text-transparent">
+            <span className="text-violet-800 bg-gradient-to-r from-violet-700 to-purple-900 bg-clip-text">
               Skills
             </span>
           </motion.h2>

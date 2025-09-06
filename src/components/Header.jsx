@@ -139,8 +139,9 @@ const Header = () => {
         <nav className="flex flex-col space-y-5">
           {["Home", "About", "Skills", "Project", "Contact"].map((item) => (
             <a
-              onClick={toggleMenu}
-              className="text-gray-300 font-medium py-2 cursor-pointer hover:text-violet-400 transition-colors duration-300"
+  onClick={() => {
+    setTimeout(() => toggleMenu(), 1000); // give scroll time
+  }}              className="text-gray-300 font-medium py-2 cursor-pointer hover:text-violet-400 transition-colors duration-300"
               key={item}
               href={`#${item.toLowerCase()}`}
             >

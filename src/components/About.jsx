@@ -1,143 +1,157 @@
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const About = () => {
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const introRef = useRef(null);
-  const starRef = useRef([]);
+  const [stars, setStars] = useState([]);
 
+  // Generate random stars
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    //title animation
-    gsap.fromTo(
-      titleRef.current,
-      { y: 100, opacity: 0 },
-
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 40%",
-          toggleActions: "play none none reverse",
-        },
+    const generateStars = () => {
+      const starArray = [];
+      for (let i = 0; i < 150; i++) {
+        starArray.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 3 + 1,
+          opacity: Math.random() * 0.8 + 0.2,
+          animationDelay: Math.random() * 4,
+          animationDuration: Math.random() * 3 + 2,
+        });
       }
-    );
-    // Intro animation
-    gsap.fromTo(
-      introRef.current,
-      { y: 100, opacity: 0, filter: "blur(10px)" },
-      {
-        y: -400,
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 1.5,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 40%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    // Stars Animation with diffrent speed and directions
-    starRef.current.forEach((star, index) => {
-      const direction = index % 2 === 0 ? 1 : -1;
-      const speed = 0.5 + Math.random() * 0.5;
-
-      gsap.to(star, {
-        x: `${direction * (100 + index * 20)}`,
-        y: `${direction * -50 - index * 10}`,
-        rotation: direction * 360,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: speed,
-        },
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === sectionRef.current) {
-          trigger.kill();
-        }
-      });
+      setStars(starArray);
     };
-  });
 
-  const addToStars = (el) => {
-    if (el && !starRef.current.includes(el)) {
-      starRef.current.push(el);
-    }
-  };
+    generateStars();
+  }, []);
 
   return (
     <section
-      ref={sectionRef}
-      className=" h-screen relative overflow-hidden bg-gradient-to-b 
-    from-black to-[#9a74cf50]"
+      id="about"
+      className="relative py-20 px-6 bg-gradient-to-b to-violet-900/40 from-black overflow-hidden"
     >
-
-      {/* stars */}
-      {/* <div className="absolute inset-0 overflow-hidden">
-        {[...Array(10)].map((_, i) => (
+      {/* Static Stars Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {stars.map((star) => (
           <div
-            ref={addToStars}
-            key={`star-${i}`}
-            className="absolute rounded-full"
+            key={star.id}
+            className="absolute bg-white rounded-full"
             style={{
-              width: `${10 + i * 3}px`,
-              height: `${10 + i * 3}px`,
-              backgroundColor: "white",
-              opacity: 0.2 + Math.random() * 0.4,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
             }}
-          >
-            {" "}
-          </div>
+          />
         ))}
-      </div> */}
-      <div
-        className=" container mx-auto px-4 h-full flex flex-col
-        items-center justify-center"
-      >
-        <h1
-          ref={titleRef}
-          className=" text-4xl md:text-6xl
-             font-bold sm:mb-16 text-center
-              text-white opacity-0"
-        >
-          About Me
-        </h1>
       </div>
-      <div
-        ref={introRef}
-        className=" absolute lg:bottom-[-20rem] md:bottom-[-10rem]
-      bottom-[-20rem] left-0 w-full flex md:flex-row flex-col justify-between 
-      lg:px-24 px-5 items-center opacity-0"
-      >
-        <h3
-          className="text-sm md:text-2xl font-bold text-purple-200
-        z-50 lg:max-w-[27rem] tracking-wider md:mt-20 sm-mt-[-40rem]
-        mt-[-32rem]"
+
+      {/* Static Constellation Lines */}
+      <div className="absolute inset-0">
+        <svg className="w-full h-full opacity-20">
+          <path
+            d="M 100 200 Q 200 100 300 250 Q 400 150 500 300"
+            stroke="rgba(139, 92, 246, 0.3)"
+            strokeWidth="1"
+            fill="none"
+            strokeDasharray="5,5"
+          />
+          <path
+            d="M 600 150 Q 700 250 800 100 Q 900 200 1000 180"
+            stroke="rgba(139, 92, 246, 0.3)"
+            strokeWidth="1"
+            fill="none"
+            strokeDasharray="3,7"
+          />
+          <path
+            d="M 50 400 Q 150 350 250 450 Q 350 380 450 420"
+            stroke="rgba(139, 92, 246, 0.2)"
+            strokeWidth="1"
+            fill="none"
+            strokeDasharray="2,4"
+          />
+        </svg>
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 container mx-auto max-w-4xl">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sunt
-          omnis obcaecati magnam accusamus excepturi quia, repellat molestiae
-          quas sapiente accusantium asperiores quibusdam minus, eum velit nam at
-          quidem placeat.
-        </h3>
-        <img
-          className=" lg-h[40rem] md:h-[25rem] h-[20rem] mix-blend-lighten"
-          src="images/person.png"
-          alt="Profile image"
-        />
+          <h2 className="text-5xl font-bold text-center mb-5">
+            About <span className="text-violet-400">Me</span>
+          </h2>
+          <div className="mb-13 text-2xl md:text-6xl font- text-center">
+            <h2>
+              {" "}
+              Hi, I'm <span className="text-violet-600">
+                {" "}
+                Muhammed Jaseel
+              </span>{" "}
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-br from-violet-900/30 to-black/80 backdrop-blur-sm border border-violet-900/50 rounded-2xl p-8 transition-shadow duration-300 hover:shadow-lg hover:shadow-violet-500/30"
+              >
+                <h3 className="text-2xl font-semibold mb-4 text-violet-400">
+                  Education
+                </h3>
+                <div className="space-y-2">
+                  <p className="text-lg font-medium">
+                    Bachelor of Computer Applications
+                  </p>
+                  <p className="text-violet-300">
+                    ISS Arts and Science College, Perinthalmanna
+                  </p>
+                  <p className="text-gray-400">Graduated: 2025</p>
+                </div>
+              </motion.div>
+            </div>
+
+            <div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-br from-violet-900/20 to-black/80 backdrop-blur-sm border border-violet-900/50 rounded-2xl p-8 transition-shadow duration-300 hover:shadow-lg hover:shadow-violet-500/30"
+              >
+                <h3 className="text-2xl font-semibold mb-4 text-violet-400">
+                  Current Role
+                </h3>
+                <div className="space-y-2">
+                  <p className="text-lg font-medium">
+                    MERN Stack Developer Intern
+                  </p>
+                  <p className="text-violet-300">Zoople Technologies</p>
+                  <p className="text-gray-400">Kochi, Kerala</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
+              Passionate MERN stack developer with a strong foundation in modern
+              web technologies. A recent graduate from ISS Arts and Science
+              College, Perinthalmanna, I'm currently gaining valuable industry
+              experience as an intern at Zoople Technologies in Kochi. Based in
+              Malappuram, Perinthalmanna, I'm working on real-world projects and
+              continuously expanding my technical expertise. I enjoy creating
+              user-friendly applications and am always eager to learn new
+              technologies and contribute to innovative solutions.
+            </p>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -6,7 +6,6 @@
 
 html {
   scroll-behavior: smooth;
-  cursor: none; /* Hide default cursor */
 }
 
 body {
@@ -21,14 +20,6 @@ body {
   color: white;
 }
 
-/* Hide default cursor on interactive elements */
-a,
-button,
-input,
-textarea,
-select {
-  cursor: none;
-}
 
 /* Section styling */
 section {

@@ -1,82 +1,70 @@
-import React from "react";
-import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import React, { useState, useEffect } from 'react';
+import { motion,m } from 'framer-motion';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className=" bg-black text-white py-16 px-6 mt-40">
-      <div className="max-w-6xl mx-auto">
-        <div className=" flex justify-between items-center">
-          {/*  Logo and description  */}
-          <h2
-            className=" text-3xl font-bold bg-gradient-to-r from-pink-400
-            to-purple-200 bg-clip-text text-transparent"
+    <footer className="border-t border-violet-900/30 py-12 px-6">
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            Jaseel
-          </h2>
-
-          {/* Scroll links */}
-
-          <div>
-            <h3 className=" text-xl font-semibold mb-4 text-pink-200">
-              Connect
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent mb-2">
+              Portfolio
             </h3>
-            <div className=" flex space-x-4 ">
-              <a
-                href="#"
-                className=" text-gray-700 hover:text-violet-400
-                    transition-colors "
-              >
-                <FiGithub className=" w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className=" text-gray-700 hover:text-violet-400
-                    transition-colors "
-              >
-                <FiTwitter className=" w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className=" text-gray-700 hover:text-violet-400
-                    transition-colors "
-              >
-                <FiLinkedin className=" w-5 h-5" />
-              </a>
-            </div>
-          </div>
+            <p className="text-gray-400">MERN Stack Developer</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex gap-6 mt-6 md:mt-0"
+          >
+            <motion.a
+              whileHover={{ scale: 1.1, color: "#a855f7" }}
+              whileTap={{ scale: 0.9 }}
+              href="#"
+              className="text-gray-400 hover:text-violet-400 transition-colors"
+            >
+              <Github className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1, color: "#a855f7" }}
+              whileTap={{ scale: 0.9 }}
+              href="#"
+              className="text-gray-400 hover:text-violet-400 transition-colors"
+            >
+              <Linkedin className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1, color: "#a855f7" }}
+              whileTap={{ scale: 0.9 }}
+              href="#"
+              className="text-gray-400 hover:text-violet-400 transition-colors"
+            >
+              <Mail className="w-6 h-6" />
+            </motion.a>
+          </motion.div>
         </div>
 
-        <div
-          className="border-t border-gray-700 mt-12 pt-8 flex flex-col
-           md:flex-row justify-between items-center"
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="border-t border-violet-900/30 mt-8 pt-8 text-center"
         >
-          <p className=" text-gray-500 text-sm">
-            2025 Jaseel. All rights reserved.
+          <p className="text-gray-400">
+            © 2025 MERN Stack Developer Portfolio. Built with React & Tailwind
+            CSS.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a
-              href=" #"
-              className="text-gray-500 hover:text-white text-sm
-                    transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href=" #"
-              className="text-gray-500 hover:text-white text-sm
-                    transition-colors"
-            >
-             Terms and Service
-            </a>
-            <a
-              href=" #"
-              className="text-gray-500 hover:text-white text-sm
-                    transition-colors"
-            >
-              Cookie Policy
-            </a>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

@@ -1,223 +1,80 @@
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SlShareAlt } from "react-icons/sl";
+import { motion } from 'framer-motion';
+import { Github, ExternalLink, Code } from 'lucide-react';
+
+
 const Project = () => {
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const titleLineRef = useRef(null);
-  const triggerRef = useRef(null);
-  const horizontalRef = useRef(null);
-
-  // Project images data
-  const projectImage = [
-    {
-      id: 1,
-      title: "3D Gaming Website",
-      imageSrc: "/images/project-2.png",
-    },
-    {
-      id: 2,
-      title: "3D Gaming Website",
-      imageSrc: "/images/project-2.png",
-    },
-    {
-      id: 3,
-      title: "Startup App",
-      imageSrc: "/images/project-3.png",
-    },
-    {
-      id: 4,
-      title: "Award winner web",
-      imageSrc: "/images/project-4.png",
-    },
-  ];
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Title reveal animation
-    gsap.fromTo(
-      titleRef.current,
-      {
-        y: 100,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    //  Title line animation
-    gsap.fromTo(
-      titleLineRef.current,
-      {
-        width: "0%",
-        opacity: 0,
-      },
-      {
-        width: "100%",
-        opacity: 1,
-        duration: 1.5,
-        ease: "power3.inOut",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    // Section entrance effect
-    gsap.fromTo(
-      triggerRef.current,
-      {
-        y: 100,
-        rotationX: 20,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        rotationX: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    //  Parallax Effect for the entire section
-    gsap.fromTo(
-      sectionRef.current,
-      {
-        backgroundPosition: "50% 0%",
-      },
-      {
-        backgroundPosition: "50% 100%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      }
-    );
-
-    //  Horizonatal Scrolling
-    const horizontalScroll = gsap.to(".panel", {
-      xPercent: -100 * (projectImage.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        start: "top top",
-        end: () => `+=${horizontalRef.current.offsetWidth}`,
-        pin: true,
-        scrub: 1,
-        snap: {
-          snapTo: 1 / (projectImage.length - 1),
-          duration: { main: 0.2, max: 0.3 },
-          delay: 0.1,
-        },
-        invalidateOnRefresh: true,
-      },
-    });
-
-    // Animate image Panel
-    const panels = gsap.utils.toArray(".panel");
-    panels.forEach((panel, i) => {
-      const image = panel.querySelector(".project-image");
-      const imageTitle = panel.querySelector(".project-title");
-
-      // Create a timeline for each panel
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: panel,
-          containerAnimation: horizontalScroll,
-          start: "left right",
-          end: "right left",
-          scrub: true,
-        }
-      })
-
-      // Image scale and opacity animation
-      tl.fromTo(
-        image,
-        { scale: 0, rotate: -20 },
-        { scale: 1, rotate: 1, duration: 0.5 })
-
-        // Title animation if exists
-        if (imageTitle) {
-            tl.fromTo(imageTitle, { y:30,}, { y:-100, duration:0.3,}, 0.2)
-        }
-      
-    })
-  },[projectImage.length]);
   return (
-    <section
-      ref={sectionRef}
-      id="horizontal-section"
-      className=" relative py-20 bg-[#f6f6f6] overflow-hidden"
-    >
-      {/*  Section title */}
-      <div className="container mx-auto px-4 mb-16 relative z-10">
-        <h2
-          ref={titleRef}
-          className=" text-4xl md:text-5xl lg:text-6xl font-bold text-black
-        text-center mb-4"
+    <section id="projects" className="py-20 px-6">
+      <div className="container mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          Featured Projects
-        </h2>
-        <div
-          ref={titleLineRef}
-          className="w-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500
-        mx-auto opacity-0"
-        ></div>
-      </div>
+          <h2 className="text-4xl font-bold text-center mb-16">
+            My <span className="text-violet-400">Projects</span>
+          </h2>
 
-      {/* Horizontal scroll section */}
-      <div ref={triggerRef} className=" overflow-hidden opacity-0">
-        <div
-          ref={horizontalRef}
-          className="horizontal-section flex md:w-[400%] w-[420%]"
-        >
-          {projectImage.map((project) => (
-            <div
-            key={project.id}
-              className="panel relative w-full h-full flex flex-col
-                items-center justify-center p-4 sm:p-8 md:p-12"
-            >
-              <img
-                className="project-image max-w-full rounded-2xl
-              object-cover"
-                src={project.imageSrc}
-                alt="Project-img"
-              />
-              <h2
-                className="project-title flex items-center gap-3 
-              md:text-3xl text-sm md:font-bold text-black mt-6
-              z-50 text-nowrap hover:text-gray-400 transition-colors 
-              duration-300 cursor-pointer"
+          {/* Project placeholder - You can add your actual projects here */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((project) => (
+              <motion.div
+                key={project}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: project * 0.2, duration: 0.8 }}
+                whileHover={{ scale: 1.02 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-violet-900/20 to-black border border-violet-900/30 rounded-xl overflow-hidden hover:border-violet-600/50 transition-all duration-300"
               >
-                {project.title}
-                <SlShareAlt />
-              </h2>
-            </div>
-          ))}
-        </div>
+                <div className="h-48 bg-gradient-to-br from-violet-600/20 to-violet-900/40 flex items-center justify-center">
+                  <Code className="w-16 h-16 text-violet-400" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-white">
+                    Project {project}
+                  </h3>
+                  <p className="text-gray-400 mb-4">
+                    Add your project description here. This is a placeholder for
+                    your actual projects.
+                  </p>
+                  <div className="flex gap-2 mb-4">
+                    <span className="px-3 py-1 text-xs bg-violet-900/30 text-violet-300 rounded-full">
+                      React
+                    </span>
+                    <span className="px-3 py-1 text-xs bg-violet-900/30 text-violet-300 rounded-full">
+                      Node.js
+                    </span>
+                    <span className="px-3 py-1 text-xs bg-violet-900/30 text-violet-300 rounded-full">
+                      MongoDB
+                    </span>
+                  </div>
+                  <div className="flex gap-4">
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href="#"
+                      className="flex items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors"
+                    >
+                      <Github className="w-4 h-4" />
+                      Code
+                    </motion.a>
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href="#"
+                      className="flex items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Live
+                    </motion.a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,155 +1,121 @@
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import { motion } from "framer-motion";
+import { Mail,Phone, MapPin } from "lucide-react"
 const Contact = () => {
-  // Main refs
-  const circleRef = useRef(null);
-  const sectionRef = useRef(null);
-  const initialTextRef = useRef(null);
-  const finalTextRef = useRef(null);
-
-  useEffect(() => {
-    //Register gsap plugins
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Make sure all Scrolltrigger instances are properly killed
-    const cleanup = () => {
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.vars.trigger === sectionRef.current) {
-          st.kill(true);
-        }
-      });
-    };
-
-    // Cleanup any existing ScrollTrigger
-    cleanup();
-
-    // Set initial states
-    gsap.set(circleRef.current, { scale: 1, backgroundColor: "white" });
-    gsap.set(initialTextRef.current, { opacity: 1 });
-    gsap.set(finalTextRef.current, { opacity: 0 });
-
-    // Create the main time line
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=200%",
-        pin: true,
-        scrub: 0.5,
-        anticipatePin: 1,
-        fastScrollEnd: true,
-        preventOverlaps: true,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    // initial state to mid-zoom
-    tl.to(
-      circleRef.current,
-      {
-        scale: 5,
-        backgroundColor: "#9333EA",
-        ease: "power1.inOut",
-        duration: 0.5,
-      },
-      0
-    );
-
-    // Fade out initial text during first half
-    tl.to(
-      initialTextRef.current,
-      {
-        opacity: 0,
-        ease: "power1.out",
-        duration: 0.2,
-      },
-      0.1
-    );
-
-    //   Mid zoom to final state (50%- 100%)
-
-    tl.to(
-      circleRef.current,
-      {
-        scale: 17,
-        backgroundColor: "#E9D5FF",
-        boxShadow: " 0 0 50px 20px rgba(233, 213, 255, 0.3)",
-        ease: "power2.inOut",
-        duration: 0.5,
-      },
-      0.5
-    );
-
-    //  Fade in final text during second half
-
-    tl.to(
-      finalTextRef.current,
-      {
-        opacity: 1,
-        ease: "power2.in",
-        duration: 0.2,
-      },
-      0.5
-    );
-
-    // return cleanup function
-    return cleanup;
-  },[]);
-
   return (
     <section
-      ref={sectionRef}
-      className=" flex items-center justify-center bg-black relative"
-      style={{ overscrollBehavior: "none" }}
+      id="contact"
+      className="py-20 px-6 bg-gradient-to-br from-violet-900/5 to-black"
     >
-      {/*  Simple circle with minimal nesting */}
-      <div
-        ref={circleRef}
-        className=" w-24 sm:w-28 md:w-32 h-24 sm:h-28 md:h-32 rounded-full flex items-center 
-        justify-center relative transition-shadow duration-1000 shadow-violet-300/50
-         shadow-lg bg-gradient-to-r from-violet-400 to-pink-100"
-      >
-        <p
-          ref={initialTextRef}
-          className="text-black font-bold text-base sm:text-lg md:text-xl
-         absolute inset-0 flex items-center text-center "
+      <div className="container mx-auto max-w-4xl">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          SCROLL DOWN
-        </p>
+          <h2 className="text-4xl font-bold text-center mb-16">
+            Get In <span className="text-violet-400">Touch</span>
+          </h2>
 
-        {/* Final text */}
-        <div
-          ref={finalTextRef}
-          className=" text-center relative flex flex-col items-center
-       justify-center opacity-0"
-        >
-          <h1
-            className=" text-black md:w-[10rem] w-[20rem] lg:scale-[0.4]
-        sm:scale-[0.25] scale-[0.07] md:font-bold text-sm sm:text-base
-        leading-none mb-5"
-          >
-            Step into future with Jaseel
-          </h1>
-          <p
-            className=" text-black lg:w-[40rem] w-[20rem] 
-            absolute sm:mt-3 mt-1 md:scale-[0.1] scale-[0.068]
-          "
-          >
-            Full stack developer specialized in crafting modern responsive web
-            interfaces using React, tailwind CSS, and advanced UI animation
-            techniques. Focused on clean code, and pixel-perfect design that
-            stand out.
-          </p>
-          <button
-            className=" px-10 py-2 rounded-xl bg-black
-          hover:bg-white hover:text-black transition-all duration-500 
-          scale-[0.1] absolute sm:mt-9 mt-7 text-nowrap"
-          >
-            Contact Me
-          </button>
-        </div>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-2xl font-semibold mb-6 text-violet-400">
+                Let's Connect
+              </h3>
+              <p className="text-gray-300 mb-8 leading-relaxed">
+                I'm always open to discussing new opportunities, interesting
+                projects, or just having a chat about technology. Feel free to
+                reach out!
+              </p>
+
+              <div className="space-y-4">
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 text-gray-300"
+                >
+                  <div className="w-10 h-10 bg-violet-900/30 rounded-lg flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-violet-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Email</p>
+                    <p>your.email@example.com</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 text-gray-300"
+                >
+                  <div className="w-10 h-10 bg-violet-900/30 rounded-lg flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-violet-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Phone</p>
+                    <p>+91 XXXXX XXXXX</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 text-gray-300"
+                >
+                  <div className="w-10 h-10 bg-violet-900/30 rounded-lg flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-violet-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Location</p>
+                    <p>Kochi, Kerala, India</p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            <motion.form
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full px-4 py-3 bg-black border border-violet-900/30 rounded-lg focus:border-violet-600 focus:outline-none text-white transition-colors"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full px-4 py-3 bg-black border border-violet-900/30 rounded-lg focus:border-violet-600 focus:outline-none text-white transition-colors"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Subject"
+                  className="w-full px-4 py-3 bg-black border border-violet-900/30 rounded-lg focus:border-violet-600 focus:outline-none text-white transition-colors"
+                />
+              </div>
+              <div>
+                <textarea
+                  rows="5"
+                  placeholder="Your Message"
+                  className="w-full px-4 py-3 bg-black border border-violet-900/30 rounded-lg focus:border-violet-600 focus:outline-none text-white transition-colors resize-none"
+                ></textarea>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="w-full bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-700 hover:to-violet-800 py-3 rounded-lg font-semibold transition-all duration-300"
+              >
+                Send Message
+              </motion.button>
+            </motion.form>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

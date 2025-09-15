@@ -1,6 +1,3 @@
-
-
-
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { FiGithub, FiTwitter, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
@@ -14,8 +11,8 @@ const Header = () => {
   // State to track if the contact form is open
   const [contactFormOpen, setContactFormOpen] = useState(false);
 
-  const openContactForm = () => setContactFormOpen(true);
-  const closeContactForm = () => setContactFormOpen(false);
+  // const openContactForm = () => setContactFormOpen(true);
+  // const closeContactForm = () => setContactFormOpen(false);
 
   return (
     <header className="absolute w-full z-50 transition-all duration-300">
@@ -34,7 +31,7 @@ const Header = () => {
           className="flex items-center"
         >
           <div className="flex h-10 w-10 rounded-xl bg-gradient-to-r from-gray-500 to-gray-100 items-center justify-center text-purple-600 font-bold text-xl mr-3">
-            M
+            J
           </div>
           <span className="text-xl font-bold bg-gradient-to-r from-gray-300 to-gray-100 bg-clip-text text-transparent">
             Jaseel
@@ -72,19 +69,19 @@ const Header = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.3, duration: 0.8 }}
             className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
-            href="#"
+            href="https://github.com/jaseeljazc"
           >
             <FiGithub className="w-5 h-5" />
           </motion.a>
-          <motion.a
+          {/* <motion.a
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.3, duration: 0.8 }}
             className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
-            href="#"
+            href=""
           >
             <FiTwitter className="w-5 h-5" />
-          </motion.a>
+          </motion.a> */}
           <motion.a
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -96,21 +93,23 @@ const Header = () => {
           </motion.a>
 
           {/* Hire me button */}
-          <motion.button
-            onClick={openContactForm}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 1.6,
-              duration: 0.8,
-              type: "spring",
-              stiffness: 100,
-              damping: 15,
-            }}
-            className="ml-4 px-4 py-2 rounded-xl bg-gradient-to-r from-gray-400 to-gray-100 text-violet-700 font-bold hover:from-violet-600 hover:to-purple-700 hover:text-white transition-all duration-300"
-          >
-            Hire me
-          </motion.button>
+          <a href="#contact">
+            <motion.button
+              // onClick={openContactForm}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                delay: 1.6,
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100,
+                damping: 15,
+              }}
+              className="ml-4 px-4 py-2 rounded-xl bg-gradient-to-r from-gray-400 to-gray-100 text-violet-700 font-bold hover:from-violet-600 hover:to-purple-700 hover:text-white transition-all duration-300"
+            >
+              Contact Me
+            </motion.button>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -139,9 +138,10 @@ const Header = () => {
         <nav className="flex flex-col space-y-5">
           {["Home", "About", "Skills", "Project", "Contact"].map((item) => (
             <a
-  onClick={() => {
-    setTimeout(() => toggleMenu(), 1000); // give scroll time
-  }}              className="text-gray-300 font-medium py-2 cursor-pointer hover:text-violet-400 transition-colors duration-300"
+              onClick={() => {
+                setTimeout(() => toggleMenu(), 1000); // give scroll time
+              }}
+              className="text-gray-300 font-medium py-2 cursor-pointer hover:text-violet-400 transition-colors duration-300"
               key={item}
               href={`#${item.toLowerCase()}`}
             >
@@ -152,13 +152,19 @@ const Header = () => {
 
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex space-x-5">
-            <a href="#" className="hover:text-violet-400 transition-colors duration-300">
+            <a
+              href="https://github.com/jaseeljazc"
+              className="hover:text-violet-400 transition-colors duration-300"
+            >
               <FiGithub className="h-5 w-5 text-gray-300" />
             </a>
-            <a href="#" className="hover:text-violet-400 transition-colors duration-300">
+            {/* <a href="#" className="hover:text-violet-400 transition-colors duration-300">
               <FiTwitter className="h-5 w-5 text-gray-300" />
-            </a>
-            <a href="#" className="hover:text-violet-400 transition-colors duration-300">
+            </a> */}
+            <a
+              href="#"
+              className="hover:text-violet-400 transition-colors duration-300"
+            >
               <FiLinkedin className="h-5 w-5 text-gray-300" />
             </a>
           </div>
@@ -201,7 +207,7 @@ const Header = () => {
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                   Get in touch
                 </h1>
-                <button 
+                <button
                   onClick={closeContactForm}
                   className="hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full p-1 transition-colors duration-200"
                 >

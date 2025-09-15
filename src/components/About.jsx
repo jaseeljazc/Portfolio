@@ -94,11 +94,11 @@ const About = () => {
               </span>{" "}
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 items-center justify-center">
             <div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="bg-gradient-to-br from-violet-900/30 to-black/80 backdrop-blur-sm border border-violet-900/50 rounded-2xl p-8 transition-shadow duration-300 hover:shadow-lg hover:shadow-violet-500/30"
+                className=" w-100 bg-gradient-to-br mb-7 from-violet-900/30 to-black/80 backdrop-blur-sm border border-violet-900/50 rounded-2xl p-8 transition-shadow duration-300 hover:shadow-lg hover:shadow-violet-500/30"
               >
                 <h3 className="text-2xl font-semibold mb-4 text-violet-400">
                   Education
@@ -118,7 +118,7 @@ const About = () => {
             <div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="bg-gradient-to-br from-violet-900/20 to-black/80 backdrop-blur-sm border border-violet-900/50 rounded-2xl p-8 transition-shadow duration-300 hover:shadow-lg hover:shadow-violet-500/30"
+                className="w-100 bg-gradient-to-br from-violet-900/20 to-black/80 backdrop-blur-sm border border-violet-900/50 rounded-2xl p-8 transition-shadow duration-300 hover:shadow-lg hover:shadow-violet-500/30"
               >
                 <h3 className="text-2xl font-semibold mb-4 text-violet-400">
                   Current Role

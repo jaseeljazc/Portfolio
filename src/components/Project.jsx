@@ -2,36 +2,36 @@ import { motion } from "framer-motion";
 import { Github, ExternalLink, Code } from "lucide-react";
 
 const Project = () => {
- const projects = [
-  {
-    id: 1,
-    title: "Mini Spotify-clone Website",
-    description: "A modern, animated personal portfolio to showcase projects and skills.",
-    tags: ["React", "Tailwind"],
-    github: "#",
-    live: "#",
-    image: "/images/Screenshot (136).png", // ✅ image path
-  },
-  {
-    id: 2,
-    title: "E-Commerce Store",
-    description: "A full-stack MERN application with product filtering, cart, and checkout.",
-    tags: ["React", "Node.js", "MongoDB"],
-    github: "#",
-    live: "#",
-    image: "/images/e-ComImage.webp", // ✅ image path
-  },
-  {
-    id: 3,
-    title: "Chat Application",
-    description: "A real-time chat app with authentication and WebSocket messaging.",
-    tags: ["React", "Firebase", "Socket.io"],
-    github: "#",
-    live: "#",
-    // ❌ no image → will show <Code /> icon instead
-  },
-];
-
+  const projects = [
+    {
+      id: 1,
+      title: "Mini Spotify-clone Website",
+      description:
+        "A modern, animated personal portfolio to showcase projects and skills.",
+      tags: ["React", "Tailwind"],
+      github: "https://github.com/jaseeljazc/Mini-Spotify-Clone",
+      live: "https://mini-spotify-clone.vercel.app/",
+      image: "/images/Screenshot (136).png", // ✅ image path
+    },
+    {
+      id: 2,
+      title: "E-Commerce Store",
+      description:
+        "A full-stack MERN application with product filtering, cart, and checkout.",
+      tags: ["React", "Node.js", "MongoDB"],
+      github: "https://github.com/jaseeljazc/CtrlHub",
+      live: "https://ctrl-hub-iipi.vercel.app/",
+      image: "/images/e-ComImage.webp", // ✅ image path
+    },
+    // {
+    //   id: 3,
+    //   title: "Chat Application",
+    //   description: "A real-time chat app with authentication and WebSocket messaging.",
+    //   tags: ["React", "Firebase", "Socket.io"],
+    //   github: "#",
+    //   live: "#",
+    // },
+  ];
 
   return (
     <section id="projects" className="py-20 px-6">
@@ -43,10 +43,11 @@ const Project = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl font-bold text-center mb-16">
-            My <span className="text-violet-400">Projects</span>
+            My <span className="text-violet-600">Projects</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"> */}
+          <div className="flex flex-col md:flex-row justify-center items-center mx-5 gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -55,7 +56,7 @@ const Project = () => {
                 transition={{ delay: index * 0.2, duration: 0.8 }}
                 whileHover={{ scale: 1.02 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-violet-900/20 to-black border border-violet-900/30 rounded-xl overflow-hidden hover:border-violet-600/50 transition-all duration-300"
+                className="w-92 bg-gradient-to-br from-violet-900/20 to-black border border-violet-900/30 rounded-xl overflow-hidden hover:border-violet-600/50 transition-all duration-300"
               >
                 <div className="sm:h-51  flex items-center justify-center overflow-hidden">
                   {project.image ? (
@@ -63,8 +64,7 @@ const Project = () => {
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-contain"
-                        style={{ imageRendering: "crisp-edges" }}
-
+                      style={{ imageRendering: "crisp-edges" }}
                     />
                   ) : (
                     <Code className="w-16 h-16 text-violet-400" />

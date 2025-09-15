@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { motion,m } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion, m } from "framer-motion";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -13,7 +13,7 @@ const Footer = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent mb-2">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-violet-500 to-violet-700 bg-clip-text text-transparent mb-2">
               Portfolio
             </h3>
             <p className="text-gray-400">MERN Stack Developer</p>
@@ -29,27 +29,27 @@ const Footer = () => {
             <motion.a
               whileHover={{ scale: 1.1, color: "#a855f7" }}
               whileTap={{ scale: 0.9 }}
-              href="#"
-              className="text-gray-400 hover:text-violet-400 transition-colors"
+              href="https://github.com/jaseeljazc"
+              className="text-gray-400 hover:text-violet-500 transition-colors"
             >
               <Github className="w-6 h-6" />
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.1, color: "#a855f7" }}
               whileTap={{ scale: 0.9 }}
-              href="#"
-              className="text-gray-400 hover:text-violet-400 transition-colors"
+              href="www.linkedin.com/in/muhammed-jaseel-923610376"
+              className="text-gray-400 hover:text-violet-500 transition-colors"
             >
               <Linkedin className="w-6 h-6" />
             </motion.a>
-            <motion.a
+            {/* <motion.a
               whileHover={{ scale: 1.1, color: "#a855f7" }}
               whileTap={{ scale: 0.9 }}
               href="#"
               className="text-gray-400 hover:text-violet-400 transition-colors"
             >
               <Mail className="w-6 h-6" />
-            </motion.a>
+            </motion.a> */}
           </motion.div>
         </div>
 

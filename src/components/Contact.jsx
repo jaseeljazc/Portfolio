@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Mail,Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 const Contact = () => {
   return (
     <section
@@ -14,12 +15,12 @@ const Contact = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl font-bold text-center mb-16">
-            Get In <span className="text-violet-400">Touch</span>
+            Get In <span className="text-purple-800">Touch</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols gap-12 ">
             <div>
-              <h3 className="text-2xl font-semibold mb-6 text-violet-400">
+              <h3 className="text-2xl font-semibold mb-6 text-violet-500">
                 Let's Connect
               </h3>
               <p className="text-gray-300 mb-8 leading-relaxed">
@@ -38,7 +39,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Email</p>
-                    <p>your.email@example.com</p>
+                    <p>jaseeljazck@gmail.com</p>
                   </div>
                 </motion.div>
 
@@ -51,7 +52,24 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Phone</p>
-                    <p>+91 XXXXX XXXXX</p>
+                    <p>+91 9745 7524 76</p>
+                  </div>
+                </motion.div>
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 text-gray-300"
+                >
+                  <div className="w-10 h-10 bg-violet-900/30 rounded-lg flex items-center justify-center">
+                    <SiWhatsapp className="w-5 h-5 text-violet-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Whatsapp</p>
+                    <a
+                      href="https://wa.me/919745752476"
+                    >
+                    
+                      <p className=" hover:text-purple-500">Message Me</p>
+                    </a>
                   </div>
                 </motion.div>
 
@@ -69,7 +87,7 @@ const Contact = () => {
                 </motion.div>
               </div>
             </div>
-
+            {/* 
             <motion.form
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -113,7 +131,7 @@ const Contact = () => {
               >
                 Send Message
               </motion.button>
-            </motion.form>
+            </motion.form> */}
           </div>
         </motion.div>
       </div>

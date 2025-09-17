@@ -37,7 +37,7 @@ const Footer = () => {
             <motion.a
               whileHover={{ scale: 1.1, color: "#a855f7" }}
               whileTap={{ scale: 0.9 }}
-              href="www.linkedin.com/in/muhammed-jaseel-923610376"
+              href="https://www.linkedin.com/in/muhammed-jaseel-923610376"
               className="text-gray-400 hover:text-violet-500 transition-colors"
             >
               <Linkedin className="w-6 h-6" />

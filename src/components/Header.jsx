@@ -87,7 +87,7 @@ const Header = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.3, duration: 0.8 }}
             className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
-            href="#"
+            href="https://www.linkedin.com/in/muhammed-jaseel-923610376"
           >
             <FiLinkedin className="w-5 h-5" />
           </motion.a>
@@ -162,7 +162,7 @@ const Header = () => {
               <FiTwitter className="h-5 w-5 text-gray-300" />
             </a> */}
             <a
-              href="#"
+            href="https://www.linkedin.com/in/muhammed-jaseel-923610376"
               className="hover:text-violet-400 transition-colors duration-300"
             >
               <FiLinkedin className="h-5 w-5 text-gray-300" />

@@ -6,35 +6,45 @@ const ProjectCom = () => {
       id: 1,
       title: "Mini Spotify-clone Website",
       description:
-        "A modern, animated personal portfolio to showcase projects and skills.",
+        "A mini Spotify clone built with React for browsing and playing music.",
       tags: ["React", "Tailwind"],
       github: "https://github.com/jaseeljazc/Mini-Spotify-Clone",
       live: "https://mini-spotify-clone.vercel.app/",
-      image: "/images/Screenshot (136).png", // ✅ image path
+      image: "/images/Spotify-clone.png", 
     },
     {
       id: 2,
       title: "E-Commerce Store",
       description:
         "A full-stack MERN application with product filtering, cart, and checkout.",
-      tags: ["React", "Node.js", "MongoDB"],
+      tags: ["React", "Node.js", "MongoDB","Express.js"],
       github: "https://github.com/jaseeljazc/CtrlHub",
       live: "https://ctrl-hub-iipi.vercel.app/",
-      image: "/images/e-ComImage.webp", // ✅ image path
+      image: "/images/e-ComImage.webp", 
+    },
+    {
+      id: 3,
+      title: "Chat App",
+      description:
+        "MERN chat app with Socket.IO, private chats, and online users",
+      tags: ["React", "Node.js", "MongoDB","Express.js"],
+      github: "https://github.com/jaseeljazc/MyFlashChat",
+      live: "https://my-flash-chat.vercel.app/",
+      image: "/images/chat-app.webp", 
     },
     
   ];
   return (
-         <div className="flex flex-col md:flex-row justify-center items-center mx-5 gap-8">
+         <div className=" flex flex-col flex-wrap xl:flex-nowrap lg:flex-row justify-center items-center sm:mx-5 gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
+                transition={{ delay: index * 0.1, duration: 0.8 }}
                 whileHover={{ scale: 1.02 }}
                 viewport={{ once: true }}
-                className="w-92 bg-gradient-to-br from-violet-900/20 to-black border border-violet-900/30 rounded-xl overflow-hidden hover:border-violet-600/50 transition-all duration-300"
+                className="min-w-75 sm:w-92 w-50 min-h-[420px] h-[450px] hover:scale-105 bg-gradient-to-br from-violet-900/30 to-black border border-violet-900/30 rounded-xl overflow-hidden hover:border-violet-600/50 transition-all duration-300"
               >
                 <div className="sm:h-51  flex items-center justify-center overflow-hidden">
                   {project.image ? (
@@ -54,7 +64,8 @@ const ProjectCom = () => {
                     {project.title}
                   </h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
-                  <div className="flex gap-2 mb-4">
+                  <div className="flex flex-col self-end">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, i) => (
                       <span
                         key={i}
@@ -64,7 +75,7 @@ const ProjectCom = () => {
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 ">
                     <motion.a
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -83,6 +94,7 @@ const ProjectCom = () => {
                       <ExternalLink className="w-4 h-4" />
                       Live
                     </motion.a>
+                  </div>
                   </div>
                 </div>
               </motion.div>

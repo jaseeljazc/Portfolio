@@ -14,7 +14,7 @@ const About = () => {
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 3 + 1,
+          size: Math.random() * 1 + 1,
           opacity: Math.random() * 0.8 + 0.2,
           animationDelay: Math.random() * 4,
           animationDuration: Math.random() * 3 + 2,
@@ -96,14 +96,14 @@ const About = () => {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 items-center justify-center">
-<AboutCom/>
+            <AboutCom />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
             viewport={{ once: true }}
-            className="mt-12 text-center"
+            className="mt-12 text-center "
           >
             <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
               Passionate MERN stack developer with a strong foundation in modern

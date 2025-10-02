@@ -100,7 +100,7 @@ const SkillCom = () => {
                     boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)",
                   }}
                   viewport={{ once: true }}
-                  className="group bg-gradient-to-br from-violet-900/10 sm:w-60 w-50 h-40 sm:h-40 to-black border border-violet-900/30 rounded-xl p-6 text-center hover:border-violet-600/50 transition-all duration-300"
+                  className="group bg-gradient-to-br from-violet-900/10 sm:w-60 w-50 h-40 sm:h-40 to-black border border-violet-900/30 rounded-xl p-6 text-center hover:border-violet-600/50 transition-all duration-300 hover:scale-105"
                 >
                   <motion.div
                     className="flex justify-center mb-3"

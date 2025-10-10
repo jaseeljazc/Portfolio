@@ -95,7 +95,7 @@ const About = () => {
               </span>{" "}
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 items-center justify-center">
+          <div className="grid md:grid-cols-2 ml-8 items-center justify-center">
             <AboutCom />
           </div>
           <motion.div

@@ -32,10 +32,20 @@ const ProjectCom = () => {
       live: "https://my-flash-chat.vercel.app/",
       image: "/images/chat-app.webp", 
     },
+    {
+      id: 4,
+      title: "YouTube Clone",
+      description:
+        "A responsive React app that replicates YouTube’s core features using the YouTube Data API v3.",
+      tags: ["React","Tailwind CSS"],
+      github: "https://github.com/jaseeljazc/Youtube-clone",
+      live: "https://jasyoutube-clone.netlify.app/",
+      image: "/images/YouTube.png", 
+    },
     
   ];
   return (
-         <div className=" flex flex-col flex-wrap xl:flex-nowrap lg:flex-row justify-center items-center sm:mx-5 gap-8">
+         <div className=" flex flex-col flex-wrap lg:flex-row justify-center items-center  sm:mx-5 gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
